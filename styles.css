@@ -1,0 +1,204 @@
+:root{
+	--bg: #f6f8fb;
+	--surface: #ffffff;
+	--muted: #6b7280;
+	--text: #0f172a;
+	--primary: #4b6bfb;
+	--primary-600: #3d57d6;
+	--accent: #7dd3fc;
+	--radius: 10px;
+	--container-width: 1100px;
+}
+
+*{box-sizing: border-box}
+html,body{height:100%}
+body{
+	margin:0;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+	background: var(--bg);
+	color: var(--text);
+	-webkit-font-smoothing:antialiased;
+	-moz-osx-font-smoothing:grayscale;
+	line-height:1.6;
+}
+
+/* App container */
+.app{
+	max-width: var(--container-width);
+	margin: 0 auto;
+	padding: 32px 20px;
+}
+
+/* Utility */
+.container{width:100%; margin:0 auto}
+.card{
+	background: var(--surface);
+	border-radius: var(--radius);
+	box-shadow: 0 6px 18px rgba(12,23,46,0.06);
+	padding: 20px;
+}
+
+/* Navbar */
+.navbar{
+	display:flex;
+	align-items:center;
+	justify-content:space-between;
+	gap:20px;
+	padding: 12px 0;
+	position:sticky;
+	top:0;
+	z-index:50;
+	background: linear-gradient(to bottom, rgba(246,248,251,0.9), rgba(246,248,251,0.6));
+	backdrop-filter: blur(4px);
+}
+.nav-logo{
+	font-weight:700;
+	letter-spacing:0.2px;
+}
+.nav-links{list-style:none; display:flex; gap:16px; margin:0; padding:0}
+.nav-links a{
+	color:var(--muted);
+	text-decoration:none;
+	padding:8px 10px;
+	border-radius:8px;
+	transition: all 160ms ease;
+}
+.nav-links a:hover,
+.nav-links a:focus{
+	color:var(--text);
+	background: rgba(75,107,251,0.06);
+	outline: none;
+}
+
+/* Social links in navbar */
+.nav-socials{display:flex; gap:10px; align-items:center}
+.social-link{
+	display:inline-flex;
+	align-items:center;
+	justify-content:center;
+	width:36px;
+	height:36px;
+	border-radius:8px;
+	color:var(--muted);
+	text-decoration:none;
+	transition:all 160ms ease;
+}
+.social-link:hover{background: rgba(75,107,251,0.06); color:var(--text)}
+
+/* Hero */
+.hero{
+	display:flex;
+	align-items:center;
+	gap:36px;
+	padding: 48px 0;
+}
+.hero-left{flex:1}
+.hero-right{width:300px; display:flex; align-items:center; justify-content:center}
+.hero h1{
+	margin:0 0 12px 0;
+	font-size: clamp(28px, 4vw, 42px);
+	line-height:1.05;
+}
+.hero p{color:var(--muted); margin:0 0 18px 0; max-width:60ch}
+
+/* Buttons (complements existing .btn-filled) */
+.btn-outline{
+	padding:10px 18px;
+	border-radius:8px;
+	border:1px solid rgba(15,23,42,0.08);
+	background:transparent;
+	color:var(--text);
+	text-decoration:none;
+	transition:all 160ms ease;
+}
+.btn-outline:hover{box-shadow:0 6px 18px rgba(15,23,42,0.06)}
+
+.btn-filled{
+	background: var(--primary);
+	color: #fff;
+	padding: 10px 18px;
+	border-radius:8px;
+	text-decoration:none;
+	border:none;
+}
+
+/* Sections (projects, skills, contact) use existing classes from App.css */
+.projects, .skills, .contact{margin-top:28px}
+
+/* Footer */
+.footer{
+	text-align:center;
+	padding:24px 10px;
+	color:var(--muted);
+	font-size:14px;
+}
+
+/* Forms */
+input,textarea,button,select{font-family:inherit}
+input,textarea{width:100%; border:1px solid rgba(15,23,42,0.08); background:transparent; padding:10px; border-radius:8px}
+
+/* Accessibility focus */
+:focus{outline: 3px solid rgba(75,107,251,0.14); outline-offset:2px}
+
+/* Responsive tweaks */
+@media (max-width:900px){
+	.hero{flex-direction:column; text-align:left}
+	.hero-right{width:220px}
+	.hero-img{width:200px; height:200px}
+	.nav-links{display:none}
+}
+
+@media (max-width:480px){
+	.app{padding:20px 14px}
+	.hero h1{font-size:26px}
+}
+
+/* Small decorative utilities */
+.muted{color:var(--muted)}
+.accent{color:var(--primary)}
+
+/* Ensure existing .project-card and .skill-box blend with theme */
+.project-card, .skill-box{background:var(--surface)}
+
+/* Page transition wrapper */
+.page-wrapper{
+	opacity:0;
+	transform: translateY(8px);
+	animation: pageFadeIn 420ms ease forwards;
+}
+
+@keyframes pageFadeIn{
+	to{opacity:1; transform: translateY(0)}
+}
+
+/* Hero image and project thumbnails */
+.hero-img{
+	width:250px;
+	height:250px;
+	object-fit:cover;
+	display:block;
+	border-radius:50%;
+	border:6px solid var(--surface);
+	box-shadow: 0 12px 30px rgba(12,23,46,0.12), inset 0 2px 6px rgba(255,255,255,0.6);
+}
+.project-thumb{width:100%; height:160px; object-fit:cover; border-radius:8px; margin-bottom:12px}
+
+/* Small hover zoom for images */
+.project-card img, .hero-img{transition:transform 260ms ease, box-shadow 260ms ease}
+.project-card:hover img, .hero-img:hover{transform:scale(1.03); box-shadow:0 10px 30px rgba(12,23,46,0.08)}
+
+/* Home-specific styles */
+.hero-sub{font-weight:600; margin-top:8px}
+.hero-blurb{max-width:56ch; color:var(--muted); margin-top:12px}
+.highlight-grid{display:flex; gap:12px; margin-top:18px}
+.highlight-card{flex:1; padding:12px}
+.featured-preview{margin-top:36px}
+
+/* Make project-grid used on home slightly taller thumbs */
+.featured-preview .project-thumb{height:140px}
+
+/* Adjust grid layout on narrow screens */
+@media (max-width:900px){
+	.highlight-grid{flex-direction:column}
+	.featured-preview .project-grid{grid-template-columns:1fr}
+}
